@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Digital Library</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="Stylesheet/normalize.css">
+  <link rel="stylesheet" href="Stylesheet/skeleton.css">
+  <link rel="stylesheet" href="Stylesheet/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="Images/LOGO.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class = "first" style="margin-top: 5%">
+        <h4>Welcome to the Library</h4>
+        <p>You can add you Favourite list of books which you have read or you want to read.</p>
+        <form class="details">
+            <div class ="boxOne" >
+              <div class="six columns">
+                <label for="book-name">Book Name</label>
+                <input type="text" name="book-name" id="title">
+              </div>
+              <div class="six columns">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author">
+              </div>
+              <div class="six columns">
+                <label for="readChoice">Have you read this Book ?</label>
+                <select class="u-full-width" id="readChoice">
+                  <option value="Option 1">Yes</option>
+                  <option value="Option 2">Not Yet</option>
+                </select>
+              </div>
+            </div>
+          <div class="boxTwo">
+            <input class="button-primary submit success alert" type="submit" value="Submit">
+          </div>  
+        </form>
+        
+      </div>
+      <div class="card-container" id="cardContainer"> 
+        
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="./Script/app.js"></script>
+</body>
+</html>

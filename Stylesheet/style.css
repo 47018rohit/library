@@ -1,0 +1,67 @@
+body{
+    background-image: linear-gradient(45deg , red , blue);
+    background-repeat: no-repeat; background-position: center;
+    background-size: cover;
+    
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+.row{
+    width: 85%;
+    margin: 0 auto;
+    height: 35vh;
+}
+.first{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.six{
+    display: flex; flex-direction: column;
+    width: 100%; align-items: center; justify-content: center;
+}
+
+form{
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: repeat(1,3fr) repeat(1,1fr);
+    width: 100%;
+    background-color: rgba(250, 235, 215, 0.52);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    padding: 2%;
+    border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.445);
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.341);
+}
+.boxOne{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.boxOne, .boxTwo{
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.button-primary{
+    margin-top: 8.5%;
+}
+.card-container{
+    margin:5% auto;
+    height: 75vh;
+    width: 85%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, clamp(250px, 30%, 300px));
+    height: 400px;
+}
+.card{
+    background-image: linear-gradient(135deg, rgba(245, 237, 16, 0.502), rgba(243, 68, 14, 0.502));
+    backdrop-filter: blur(5px);
+    border: 1px solid yellow; border-radius: 1rem;
+}
