@@ -46,17 +46,29 @@ class UI{
 
     card.innerHTML = `
         <h1>${book.title}</h1>
-        <h5>Author : ${book.author}</h5>
-        <select name="readChoice" id="readChoice">
-          <option value="option1">yes</option>
-          <option value="option2">not yet</option>
-          ${book.read}
-        </select>
-    `;
+        <h5>Author : ${book.author}</h5>`;
+    
+    const readChoice = document.querySelector("#readChoice")
+    
+    const editRead = document.createElement('button')
+    editRead.innerHTML = readChoice.value;
+    editRead.setAttribute('class', 'readValue')
+    card.append(editRead)
+
+    //read || not read switch
+      editRead.addEventListener('click',(e)=>{
+        if(e.target.innerHTML === 'Read'){
+            editRead.innerHTML = 'Not read'
+        }else{
+            editRead.innerHTML = "Read"
+          }
+        
+      })
+    //switch ends
+
     const removebtn = document.createElement('button')
     removebtn.innerHTML = "Remove"
-    let unique = Math.floor(Math.random()*1000);
-    removebtn.classList.add(`${unique}`);
+    removebtn.classList.add('remove');
 
     card.appendChild(removebtn);
     cardContainer.appendChild(card);
@@ -67,7 +79,6 @@ class UI{
       
   }
 
-
   static clearFields(){
     document.querySelector("#title").value = "";
     document.querySelector("#author").value = "";
@@ -76,9 +87,30 @@ class UI{
 }
 
 //class:storage
-const storage = localStorage;
+class store{
+  static getBooks(){
+    let books;
+    if(localStorage.getItem('books') === null){
+      books = [];
+    }else{
+      books = JSON.parse(localStorage.getItem('books'))
+    }
+    return books;
+  }
 
-// storage.setItem()
+  static addBook(book){
+    const books = store.getBooks();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringyfy(books));
+  }
+
+  static removeBook(){
+    const books = store.getBooks();
+    books.forEach((books,index)=>{
+      
+    })
+  }
+}
 
 
 //Event: cards
@@ -97,7 +129,7 @@ document.querySelector(".details").addEventListener('submit',(e)=>{
 
   //validate
   if(title === '' || author ===""){
-    alert("plz fill all details")
+    alert('Please fill in all the fields')
   }else{
     //instantiate book
     const book = new Book(title, author, read);
