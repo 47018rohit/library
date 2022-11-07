@@ -5,7 +5,7 @@ class Book{
   constructor(title, author , read){
     this.title = title;
     this.author = author;
-    this.read = read;
+    this.read = read.value;
   }
 
 }
@@ -38,25 +38,35 @@ class UI{
     const card = document.createElement("div");
     card.classList.add('card')
 
+    //Event: remove books
+
+    function removeCard(el){
+      el.parentElement.remove();
+    }
+
     card.innerHTML = `
         <h1>${book.title}</h1>
         <h5>Author : ${book.author}</h5>
         <select name="readChoice" id="readChoice">
           <option value="option1">yes</option>
           <option value="option2">not yet</option>
-        
+          ${book.read}
         </select>
-        <button class="remove" id="">remove</button>
     `;
+    const removebtn = document.createElement('button')
+    removebtn.innerHTML = "Remove"
+    let unique = Math.floor(Math.random()*1000);
+    removebtn.classList.add(`${unique}`);
 
+    card.appendChild(removebtn);
     cardContainer.appendChild(card);
 
-  
-    // const remove = document.querySelector(``)
-    //   remove.addEventListener('click', () => {
-    //     console.log("clcked")
-    //   });
+    removebtn.addEventListener('click' , (e)=>{
+      removeCard(e.target);
+    })
+      
   }
+
 
   static clearFields(){
     document.querySelector("#title").value = "";
@@ -66,7 +76,9 @@ class UI{
 }
 
 //class:storage
+const storage = localStorage;
 
+// storage.setItem()
 
 
 //Event: cards
@@ -75,22 +87,31 @@ document.addEventListener("DOMContentLoaded", UI.displayBooks);
 
 //Add books
 document.querySelector(".details").addEventListener('submit',(e)=>{
-  
+  //prevent actual submit
   e.preventDefault();
   
+  //get form values
   const title = document.querySelector("#title").value;
   const author= document.querySelector("#author").value;
   const read = document.querySelector("#readChoice").value;
 
-  const book = new Book(title, author, read);
+  //validate
+  if(title === '' || author ===""){
+    alert("plz fill all details")
+  }else{
+    //instantiate book
+    const book = new Book(title, author, read);
 
-  UI.addBookToList(book)
+    //add book to UI
+    UI.addBookToList(book)
 
-  UI.clearFields();
+    //clear fields
+    UI.clearFields();
 
+  }
+
+  
 })
-
-//Event: remove books
 
 
 
