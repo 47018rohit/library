@@ -5,7 +5,7 @@ class Book{
   constructor(title, author , read){
     this.title = title;
     this.author = author;
-    this.read = read.value;
+    this.read = read;
   }
 
 }
@@ -14,20 +14,7 @@ class Book{
 
 class UI{
   static displayBooks() {
-    const storedBooks =[
-      {
-      title: "harry potter",
-      author: "jkr",
-      read: "not yet" 
-      },
-      {
-        title: "lord of the",
-        author: "jkk",
-        read:"not yet"
-      }
-   ];
-
-   const books = storedBooks;
+   const books = store.getBooks();
 
    books.forEach((book) => UI.addBookToList(book));
   }
@@ -51,7 +38,8 @@ class UI{
     const readChoice = document.querySelector("#readChoice")
     
     const editRead = document.createElement('button')
-    editRead.innerHTML = readChoice.value;
+    book.read = readChoice.value;
+    editRead.innerHTML = book.read;
     editRead.setAttribute('class', 'readValue')
     card.append(editRead)
 
@@ -72,6 +60,8 @@ class UI{
 
     card.appendChild(removebtn);
     cardContainer.appendChild(card);
+    let unique = Math.floor(Math.random()*10000);
+    removebtn.classList.add(`${unique}`);
 
     removebtn.addEventListener('click' , (e)=>{
       removeCard(e.target);
@@ -101,14 +91,17 @@ class store{
   static addBook(book){
     const books = store.getBooks();
     books.push(book);
-    localStorage.setItem('books', JSON.stringyfy(books));
+    localStorage.setItem('books', JSON.stringify(books));
   }
 
   static removeBook(){
     const books = store.getBooks();
     books.forEach((books,index)=>{
-      
-    })
+      if(books.read === read){
+        books.splice(index,1)
+      }
+    });
+    localStorage.setItem('books', JSON.stringify(books));
   }
 }
 
@@ -136,6 +129,9 @@ document.querySelector(".details").addEventListener('submit',(e)=>{
 
     //add book to UI
     UI.addBookToList(book)
+    
+    //add book to store
+    store.addBook(book);
 
     //clear fields
     UI.clearFields();
